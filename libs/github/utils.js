@@ -5,7 +5,7 @@
  */
 async function getRateLimit(client) {
   try {
-    const response = await client.misc.getRateLimit();
+    const response = await client.rateLimit.get();
     return response.data.resources.core;
   } catch(error) {
     throw new Error(error);
@@ -68,49 +68,7 @@ async function handleRateLimit({ rateLimit, client }) {
 
 }
 
-/**
- * Paginates over the results of the passed method.
- * @param {object} client Api client instance.
- * @param {function} method Function to execute and paginate over.
- * @param {object} params Parameter for the supplied method. Parameters should include page size and offset.
- * @returns {Promise<{data: *, rateLimit: object}>}
- *
- * @example
- * let requestParams = {
- *   owner: 'gsa',
- *   repo: 'code-gov-integrations',
- *   state: 'open',
- *   labels: 'help wanted,code.gov',
- *   per_page: 10,
- *   page: 1};
- * const result = await paginate(client, client.issues.getForRepo, requestParams);
- */
-async function paginate (client, method, params) {
-  try {
-    await handleRateLimit({
-      rateLimit: await getRateLimit(client),
-      client
-    });
 
-    let response = await method(params);
-    let {data} = response;
-
-    while (client.hasNextPage(response)) {
-      await handleRateLimit({
-        rateLimit: await getRateLimit(client),
-        client
-      });
-      response = await client.getNextPage(response);
-      data = data.concat(response.data);
-    }
-
-    return data;
-  } catch(error) {
-    throw error;
-  }
-}
-
-/**
  * Handle errors from the API client and transform them into the package error object.
  * @param {object} error API client error object.
  * @returns {object} Object with the package's error object and the current rateLimit information.
@@ -120,7 +78,6 @@ function handleError(error) {
 
   return {
     error: Object.assign({}, {
-      code: error.code,
       status: error.status,
       message: error.message
     }),
@@ -132,7 +89,6 @@ function handleError(error) {
 module.exports = {
   parseRateLimit,
   handleRateLimit,
-  paginate,
   getRateLimit,
   handleError
 };
