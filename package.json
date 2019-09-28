@@ -1,6 +1,6 @@
 {
   "name": "@code.gov/code-gov-integrations",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Package for third party integrations being used by code.gov and its projects",
   "main": "index.js",
   "scripts": {
@@ -33,7 +33,7 @@
     "mocha": "^5.2.0",
     "mocha-junit-reporter": "^1.18.0",
     "nock": "^9.6.1",
-    "nyc": "^13.3.0"
+    "nyc": "^14.1.1"
   },
   "dependencies": {
     "@octokit/plugin-throttling": "^2.4.0",

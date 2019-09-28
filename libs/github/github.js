@@ -1,5 +1,5 @@
 const Octokit = require('@octokit/rest')
-  .plugin(require('@octokit/plugin-throttling'))
+  .plugin(require('@octokit/plugin-throttling'));
 const { parseRateLimit, handleRateLimit, getRateLimit, handleError } = require('./utils');
 
 /**
@@ -17,16 +17,16 @@ function getClient(options) {
     throttle: {
       onRateLimit: (retryAfter, options) => {
         console.warn(
-          `Request quota exhausted for request ${options.method} ${options.url}`)
+          `Request quota exhausted for request ${options.method} ${options.url}`);
 
         if (options.request.retryCount === 3) { // only retries once
-          console.log(`Retrying after ${retryAfter} seconds!`)
+          console.log(`Retrying after ${retryAfter} seconds!`);
           return true;
         }
       },
       onAbuseLimit: (retryAfter, options) => {
         // does not retry, only logs a warning
-        console.warn(`Abuse detected for request ${options.method} ${options.url}`)
+        console.warn(`Abuse detected for request ${options.method} ${options.url}`);
       }
     }
   });
