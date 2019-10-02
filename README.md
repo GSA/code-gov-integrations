@@ -38,3 +38,12 @@ libs
 The included integration(s) export an object with a getData function. We recomend following the same pattern with your integrations.
 
 Contributing integrations to this module must follow the pattern mentioned for it to be considered for inclusion.
+
+## Questions?
+
+Feel free to contact us however is most convenient for you:
+
+* Twitter: [@CodeDotGov](https://twitter.com/CodeDotGov)
+* Email: [code@gsa.gov](mailto:code@gsa.gov)
+* LinkedIn: [code-gov](https://www.linkedin.com/company/code-gov)
+* Join our #opensource-public Slack channel: https://chat.18f.gov/
