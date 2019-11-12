@@ -172,6 +172,7 @@ async function getRepoIssues({ owner, repo, state='open', labels='help wanted', 
         description: issue.description,
         body: issue.body,
         labels: issue.labels.map(label => label.name),
+        repository: repo,
         updated_at: issue.updated_at,
         merged_at: issue.merged_at,
         created_at: issue.created_at
