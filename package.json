@@ -4,6 +4,7 @@
   "description": "Package for third party integrations being used by code.gov and its projects",
   "main": "index.js",
   "scripts": {
+    "licenses": "license-checker --json --relativeLicensePath --out dependency_licenses.json",
     "lint": "./node_modules/.bin/eslint .",
     "lint-fix": "./node_modules/.bin/eslint --fix .",
     "test": "./node_modules/.bin/nyc mocha --opts tests/mocha.opts tests",
@@ -37,6 +38,7 @@
   },
   "dependencies": {
     "@octokit/plugin-throttling": "^2.4.0",
-    "@octokit/rest": "^16.16.5"
+    "@octokit/rest": "^16.16.5",
+    "license-checker": "^25.0.1"
   }
 }
