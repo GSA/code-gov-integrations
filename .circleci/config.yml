@@ -46,7 +46,10 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: run-test
-          command: npm test
+          command: |
+            mkdir ./coverage
+            npm test
+            ./node_modules/.bin/nyc report --reporter=text-lcov > coverage/lcov.info
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
