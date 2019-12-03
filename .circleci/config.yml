@@ -29,7 +29,8 @@ jobs:
   test:
     <<: *defaults
     environment:
-      NODE_ENV: "testing"
+      - NODE_ENV: "testing"
+      - CC_TEST_REPORTER_ID: d78090580eb82e9d59465bab29399266dfe1cad16667043950aa317a1e2ca36e
     steps:
       - attach_workspace:
           at: ~/code-gov-integrations
