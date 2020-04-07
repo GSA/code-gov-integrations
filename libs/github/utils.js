@@ -20,7 +20,7 @@ async function getRateLimit(client) {
  * Defaults to an empty object.
  */
 function parseRateLimit(response) {
-  if(response.hasOwnProperty('headers')) {
+  if(Object.prototype.hasOwnProperty.call(response, 'headers')) {
     return {
       limit: response.headers["x-ratelimit-limit"],
       remaining: response.headers["x-ratelimit-remaining"],
